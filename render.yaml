@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: ai-prospect-discovery
+    runtime: python
+    plan: free
+    buildCommand: pip install --upgrade pip && pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: GEMINI_PRIMARY_MODEL
+        value: gemini-2.5-flash
+      - key: GEMINI_FALLBACK_MODEL
+        value: gemini-2.5-flash-lite
+      - key: CACHE_TTL_SECONDS
+        value: "3600"
+      - key: CACHE_MAXSIZE
+        value: "1000"
+      - key: SEARCH_TIMEOUT_SECONDS
+        value: "10.0"
+      - key: HTTP_TIMEOUT_SECONDS
+        value: "5.0"
+      - key: MAX_SEARCH_CONCURRENCY
+        value: "5"
+      - key: MAX_TAVILY_QUERIES_PER_REQUEST
+        value: "6"
+      - key: MAX_RESPONSE_BYTES
+        value: "1048576"
