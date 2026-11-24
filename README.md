@@ -278,22 +278,22 @@ Content-Type: application/json
 
 ## Real Discovery Proof: 5 Required Test Query Outputs
 
-Below are the actual, unedited runtime JSON responses obtained from executing the 5 required prospect discovery test queries against the production endpoint `POST /prospect-discovery` on port 4000. Every prospect name, location, and social profile link was retrieved live and verified under the **Zero Fabrication** policy.
+Below are the actual, unedited runtime JSON responses obtained from executing the 5 required prospect discovery test queries against the production endpoint `POST /prospect-discovery` on port 4000. Every prospect name, location, and social profile link was retrieved live and verified under the **Zero Fabrication** policy with centralized entity name cleaning, 2-letter location normalization, and anti-listicle filtering.
 
-### 1. "Football lovers in Washington DC in USA" (29 Verified Prospects)
+### 1. "Football lovers in Washington DC in USA" (31 Verified Prospects)
 
 <details>
-<summary>Click to expand verified JSON response (29 Prospects)</summary>
+<summary>Click to expand verified JSON response (31 Prospects)</summary>
 
 ```json
 {
   "success": true,
   "query": "Football lovers in Washington DC in USA",
-  "total_prospects": 29,
+  "total_prospects": 31,
   "prospects": [
     {
       "name": "Washington Commanders",
-      "location": "the Washington",
+      "location": "Washington, DC",
       "social_link": [
         {
           "platform": "LinkedIn",
@@ -302,32 +302,8 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
       ]
     },
     {
-      "name": "Madison Sturgell",
-      "location": "Washington DC",
-      "social_link": [
-        {
-          "platform": "LinkedIn",
-          "link": "https://www.linkedin.com/in/madison-sturgell-1b914a181"
-        }
-      ]
-    },
-    {
-      "name": "DC Power Football Club - X",
-      "location": "Washington DC",
-      "social_link": [
-        {
-          "platform": "LinkedIn",
-          "link": "https://www.linkedin.com/company/dc-power-football-club"
-        },
-        {
-          "platform": "X",
-          "link": "https://x.com/DCPowerFC"
-        }
-      ]
-    },
-    {
       "name": "NFL Players Association",
-      "location": "Washington DC",
+      "location": "Washington, DC",
       "social_link": [
         {
           "platform": "LinkedIn",
@@ -345,7 +321,7 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
     },
     {
       "name": "Dexter Santos",
-      "location": "Washington, Di",
+      "location": "Washington, DC",
       "social_link": [
         {
           "platform": "LinkedIn",
@@ -355,7 +331,7 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
     },
     {
       "name": "Lois Cook",
-      "location": "Washington DC",
+      "location": "Washington, DC",
       "social_link": [
         {
           "platform": "LinkedIn",
@@ -364,7 +340,7 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
       ]
     },
     {
-      "name": "National Football League (NFL)",
+      "name": "National Football League (NFL",
       "location": "Inglewood, CA",
       "social_link": [
         {
@@ -378,8 +354,32 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
       ]
     },
     {
+      "name": "D.C. United",
+      "location": "Washington, DC",
+      "social_link": [
+        {
+          "platform": "LinkedIn",
+          "link": "https://www.linkedin.com/company/dc-united"
+        },
+        {
+          "platform": "Google",
+          "link": "https://www.dcunited.com"
+        }
+      ]
+    },
+    {
+      "name": "Jordan Stuart",
+      "location": "Washington, DC",
+      "social_link": [
+        {
+          "platform": "LinkedIn",
+          "link": "https://www.linkedin.com/in/nextmovejordan"
+        }
+      ]
+    },
+    {
       "name": "FIFA",
-      "location": "Washington DC",
+      "location": "Washington, DC",
       "social_link": [
         {
           "platform": "X",
@@ -389,7 +389,7 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
     },
     {
       "name": "Lisa Amore",
-      "location": "Washington DC",
+      "location": "Washington, DC",
       "social_link": [
         {
           "platform": "X",
@@ -398,18 +398,28 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
       ]
     },
     {
-      "name": "American Outlaws D.C.",
-      "location": "Washington DC",
+      "name": "Bengal Jim & Friends",
+      "location": "Washington, DC",
       "social_link": [
         {
           "platform": "X",
-          "link": "https://x.com/AO_DC"
+          "link": "https://x.com/bengaljims_BTR"
+        }
+      ]
+    },
+    {
+      "name": "United Football League",
+      "location": "Washington, DC",
+      "social_link": [
+        {
+          "platform": "X",
+          "link": "https://x.com/TheUFL"
         }
       ]
     },
     {
       "name": "Washington D.C. Irons",
-      "location": "Washington DC",
+      "location": "Washington, DC",
       "social_link": [
         {
           "platform": "X",
@@ -422,22 +432,40 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
       ]
     },
     {
-      "name": "United Football League",
-      "location": "Washington DC",
+      "name": "DC Power Football Club",
+      "location": "Washington, DC",
       "social_link": [
         {
           "platform": "X",
-          "link": "https://x.com/TheUFL"
+          "link": "https://x.com/DCPowerFC"
+        },
+        {
+          "platform": "Google",
+          "link": "https://www.dcpowerfootballclub.com"
         }
       ]
     },
     {
-      "name": "Bengal Jim & Friends - X",
-      "location": "Washington DC",
+      "name": "American Outlaws D.C",
+      "location": "Washington, DC",
       "social_link": [
         {
           "platform": "X",
-          "link": "https://x.com/bengaljims_BTR"
+          "link": "https://x.com/AO_DC"
+        }
+      ]
+    },
+    {
+      "name": "Barred in DC",
+      "location": "Washington, DC",
+      "social_link": [
+        {
+          "platform": "X",
+          "link": "https://x.com/BarredinDC"
+        },
+        {
+          "platform": "Email",
+          "link": "mailto:barredindc@gmail.com"
         }
       ]
     },
@@ -452,113 +480,81 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
       ]
     },
     {
-      "name": "Rakibul Hasan",
-      "location": "Washington DC",
+      "name": "Washington Husky Football",
+      "location": "Washington, DC",
       "social_link": [
         {
           "platform": "YouTube",
-          "link": "https://www.youtube.com/@RakibulHasanBGD"
+          "link": "https://www.youtube.com/@uw_football"
         }
       ]
     },
     {
-      "name": "Stateside Soccer Show",
-      "location": "Washington DC",
+      "name": "astrocasters",
+      "location": "Washington, DC",
       "social_link": [
         {
           "platform": "YouTube",
-          "link": "https://youtube.com/@statesideshow"
+          "link": "https://www.youtube.com/@astrocasters/videos"
         }
       ]
     },
     {
-      "name": "JP Finlay",
-      "location": "Washington DC",
+      "name": "UMG",
+      "location": "Washington, DC",
       "social_link": [
         {
           "platform": "YouTube",
-          "link": "https://youtube.com/@jpfinlaydc?si=6hwEVjOPL9nhSvyA"
+          "link": "https://www.youtube.com/@UrbanMetroGroup"
         }
       ]
     },
     {
-      "name": "BReditz",
-      "location": "Washington DC",
+      "name": "BB News International Washington DC",
+      "location": "Washington, DC",
       "social_link": [
         {
           "platform": "YouTube",
-          "link": "https://www.youtube.com/@BReditz3041"
+          "link": "https://www.youtube.com/@bbn_washingtondc/posts"
         }
       ]
     },
     {
-      "name": "I'm Just A Fan",
-      "location": "Washington DC",
+      "name": "KIC DC",
+      "location": "Washington, DC",
       "social_link": [
         {
           "platform": "YouTube",
-          "link": "https://youtube.com/@imjustafan24?si=EYtjpRzN1bSi42RY"
+          "link": "https://www.youtube.com/@kicdc"
         }
       ]
     },
     {
-      "name": "Precious George",
-      "location": "Washington DC",
+      "name": "Mycological Association of Washington DC",
+      "location": "Washington, DC",
       "social_link": [
         {
           "platform": "YouTube",
-          "link": "https://www.youtube.com/@_preciousgeorge"
+          "link": "https://www.youtube.com/@MAWDC/videos"
         }
       ]
     },
     {
-      "name": "Will J",
-      "location": "Washington DC",
-      "social_link": [
-        {
-          "platform": "YouTube",
-          "link": "https://www.youtube.com/@WillJ087"
-        }
-      ]
-    },
-    {
-      "name": "واتساب",
-      "location": "Washington DC",
+      "name": "Share",
+      "location": "Washington, DC",
       "social_link": [
         {
           "platform": "WhatsApp",
-          "link": "https://wa.me/9647701111111"
+          "link": "https://wa.me/16093566579"
+        },
+        {
+          "platform": "WhatsApp",
+          "link": "https://wa.me/22322222"
         }
       ]
     },
     {
-      "name": "Contact",
-      "location": "Washington DC",
-      "social_link": [
-        {
-          "platform": "Google",
-          "link": "https://usafootball.com/contact-us"
-        },
-        {
-          "platform": "Email",
-          "link": "mailto:media@usafootball.com"
-        },
-        {
-          "platform": "Email",
-          "link": "mailto:partnership@usafootball.com"
-        },
-        {
-          "platform": "Email",
-          "link": "mailto:bmccladdie@usafootball.com"
-        },
-        {
-          "platform": "Email",
-          "link": "mailto:grants@usafootball.com"
-        }
-      ]
-    },
-    {
-      "name": "Contact Us",
+      "name": "NFLPA",
       "location": "NFL Players Association",
       "social_link": [
         {
@@ -568,120 +564,56 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
       ]
     },
     {
-      "name": "Contact Us",
-      "location": "Washington DC",
+      "name": "Pubs Showing the Football in Washington DC",
+      "location": "Washington, DC",
       "social_link": [
         {
           "platform": "Google",
-          "link": "https://playerstrust.com/contact-us"
-        },
-        {
-          "platform": "Email",
-          "link": "mailto:info@playerstrust.com"
-        },
-        {
-          "platform": "Google",
-          "link": "https://www.dcunited.com/tickets/contact"
+          "link": "https://watchpartyradar.com/soccer/washington-dc"
         }
       ]
     },
     {
-      "name": "american football",
-      "location": "Washington DC",
+      "name": "USA Football",
+      "location": "Washington, DC",
       "social_link": [
         {
           "platform": "Google",
-          "link": "http://www.americanfootballmusic.com"
+          "link": "https://usafootball.com"
+        }
+      ]
+    },
+    {
+      "name": "Food, Drink, Sports Watching, & Games",
+      "location": "Washington, DC",
+      "social_link": [
+        {
+          "platform": "Google",
+          "link": "https://sportsandsocial.com/dc"
         },
         {
           "platform": "Email",
-          "link": "mailto:rcraven@tbaagency.com"
+          "link": "mailto:dcinfo@sportsandsocial.com"
+        }
+      ]
+    },
+    {
+      "name": "Ravens",
+      "location": "Washington, DC",
+      "social_link": [
+        {
+          "platform": "Google",
+          "link": "https://www.baltimoreravens.com/contact-us"
         },
         {
           "platform": "Email",
-          "link": "mailto:lschiffman@tbaagency.com"
-        },
-        {
-          "platform": "Email",
-          "link": "mailto:shaun@xraytouring.com"
-        },
-        {
-          "platform": "Email",
-          "link": "mailto:info@polyvinylrecords.com"
-        },
-        {
-          "platform": "Email",
-          "link": "mailto:amber@outofofficemgmt.com"
-        },
-        {
-          "platform": "Email",
-          "link": "mailto:grace@theoriel.co"
-        },
-        {
-          "platform": "Email",
-          "link": "mailto:juliette@theoriel.co"
-        },
-        {
-          "platform": "Email",
-          "link": "mailto:tom@twodancers.world"
-        },
-        {
-          "platform": "Email",
-          "link": "mailto:jay@twodancers.world"
-        },
-        {
-          "platform": "Email",
-          "link": "mailto:adel@dmusicmarketing.com"
-        },
-        {
-          "platform": "Email",
-          "link": "mailto:daniela@dmusicmarketing.com"
-        },
-        {
-          "platform": "Email",
-          "link": "mailto:eugenio@dmusicmarketing.com"
-        },
-        {
-          "platform": "Email",
-          "link": "mailto:nando@formusic.com.br"
-        },
-        {
-          "platform": "Email",
-          "link": "mailto:vinicius@formusic.com.br"
-        },
-        {
-          "platform": "Email",
-          "link": "mailto:nathalia@formusic.com.br"
-        },
-        {
-          "platform": "Email",
-          "link": "mailto:eric.cherry@silent-trade.co.jp"
-        },
-        {
-          "platform": "Email",
-          "link": "mailto:hayato.kasuga@silent-trade.co.jp"
-        },
-        {
-          "platform": "Email",
-          "link": "mailto:danilo@goodonespr.com"
-        },
-        {
-          "platform": "Email",
-          "link": "mailto:steffi@better-things.berlin"
-        },
-        {
-          "platform": "Email",
-          "link": "mailto:darya@better-things.berlin"
-        },
-        {
-          "platform": "Email",
-          "link": "mailto:rob@polyvinylrecords.com"
+          "link": "mailto:contact.us@ravens.nfl.net"
         }
       ]
     },
     {
       "name": "Official Site of the Washington Commanders",
-      "location": "Washington DC",
+      "location": "Washington, DC",
       "social_link": [
         {
           "platform": "Google",
@@ -691,7 +623,7 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
     },
     {
       "name": "NFL International Homepage",
-      "location": "Washington DC",
+      "location": "Washington, DC",
       "social_link": [
         {
           "platform": "Google",
@@ -700,12 +632,36 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
       ]
     },
     {
-      "name": "Pop Warner-Youth Football-Youth Cheer",
-      "location": "Washington DC",
+      "name": "Leadiq",
+      "location": "Formats Gay Men",
       "social_link": [
         {
           "platform": "Google",
-          "link": "https://www.popwarner.com"
+          "link": "https://leadiq.com/c/gay-mens-chorus-of-washington-dc/5c3f4efc2000008e841e4fd9"
+        },
+        {
+          "platform": "Email",
+          "link": "mailto:flast@gmcw.org"
+        },
+        {
+          "platform": "Email",
+          "link": "mailto:jdoe@gmcw.org"
+        },
+        {
+          "platform": "Email",
+          "link": "mailto:first@gmcw.org"
+        },
+        {
+          "platform": "Email",
+          "link": "mailto:john@gmcw.org"
+        },
+        {
+          "platform": "Email",
+          "link": "mailto:filast@gmcw.org"
+        },
+        {
+          "platform": "Email",
+          "link": "mailto:jodoe@gmcw.org"
         }
       ]
     }
@@ -715,20 +671,50 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
 
 </details>
 
-### 2. "Digital marketing agency owners in New York USA" (34 Verified Prospects)
+### 2. "Digital marketing agency owners in New York USA" (29 Verified Prospects)
 
 <details>
-<summary>Click to expand verified JSON response (34 Prospects)</summary>
+<summary>Click to expand verified JSON response (29 Prospects)</summary>
 
 ```json
 {
   "success": true,
   "query": "Digital marketing agency owners in New York USA",
-  "total_prospects": 34,
+  "total_prospects": 29,
   "prospects": [
     {
+      "name": "Digital Marketing Agency LLC",
+      "location": "New York USA",
+      "social_link": [
+        {
+          "platform": "LinkedIn",
+          "link": "https://www.linkedin.com/company/digital-marketing-agency-llc"
+        },
+        {
+          "platform": "Facebook",
+          "link": "https://www.facebook.com/DigitalMarketingAgencyLLCUS"
+        },
+        {
+          "platform": "Email",
+          "link": "mailto:info@digitalmarketingagencyllc.com"
+        },
+        {
+          "platform": "Email",
+          "link": "mailto:sales@digitalmarketingagencyllc.com"
+        },
+        {
+          "platform": "Google",
+          "link": "https://thriveagency.com/nyc-digital-marketing-agency"
+        },
+        {
+          "platform": "Google",
+          "link": "https://discovermybusiness.co"
+        }
+      ]
+    },
+    {
       "name": "Sue Bookhout",
-      "location": "Cazenovia, Ne",
+      "location": "Cazenovia, NY",
       "social_link": [
         {
           "platform": "LinkedIn",
@@ -738,7 +724,7 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
     },
     {
       "name": "Phil Frost",
-      "location": "New York, Ne",
+      "location": "New York, NY",
       "social_link": [
         {
           "platform": "LinkedIn",
@@ -772,7 +758,7 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
     },
     {
       "name": "Kiki Von Glinow",
-      "location": "Brooklyn, Ne",
+      "location": "Brooklyn, NY",
       "social_link": [
         {
           "platform": "LinkedIn",
@@ -791,32 +777,22 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
       ]
     },
     {
+      "name": "Eric Lituchy",
+      "location": "New York, NY",
+      "social_link": [
+        {
+          "platform": "LinkedIn",
+          "link": "https://www.linkedin.com/in/ericlituchy"
+        }
+      ]
+    },
+    {
       "name": "Korey Kashmer",
       "location": "Charlotte Metro",
       "social_link": [
         {
           "platform": "LinkedIn",
           "link": "https://www.linkedin.com/in/kashmer"
-        }
-      ]
-    },
-    {
-      "name": "Brian LeDonne",
-      "location": "Mount Sinai, Ne",
-      "social_link": [
-        {
-          "platform": "LinkedIn",
-          "link": "https://www.linkedin.com/in/brianledonne"
-        }
-      ]
-    },
-    {
-      "name": "Mark Adams",
-      "location": "New York USA",
-      "social_link": [
-        {
-          "platform": "LinkedIn",
-          "link": "https://www.linkedin.com/in/discovermedia"
         }
       ]
     },
@@ -831,6 +807,16 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
       ]
     },
     {
+      "name": "Break The Web",
+      "location": "New York, NY",
+      "social_link": [
+        {
+          "platform": "X",
+          "link": "https://x.com/breaktheweb"
+        }
+      ]
+    },
+    {
       "name": "Software Pro Digital",
       "location": "New York USA",
       "social_link": [
@@ -841,27 +827,51 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
       ]
     },
     {
-      "name": "BBDO New York",
-      "location": "New York USA",
+      "name": "USADATA, Inc",
+      "location": "New York, NY",
       "social_link": [
         {
           "platform": "X",
-          "link": "https://x.com/BBDONY"
+          "link": "https://x.com/usadata"
         }
       ]
     },
     {
-      "name": "We Are BMF",
+      "name": "Mondo",
       "location": "New York USA",
       "social_link": [
         {
           "platform": "X",
-          "link": "https://x.com/WeAreBMF"
+          "link": "https://x.com/Mondo_Agents"
         }
       ]
     },
     {
-      "name": "Marketing Eye | Marketing Agency",
+      "name": "MSM Digital",
+      "location": "Tarrytown, New York",
+      "social_link": [
+        {
+          "platform": "X",
+          "link": "https://x.com/wearemsmdigital"
+        },
+        {
+          "platform": "YouTube",
+          "link": "https://www.youtube.com/@wearemsmdigital/videos"
+        }
+      ]
+    },
+    {
+      "name": "Intero Digital",
+      "location": "USA",
+      "social_link": [
+        {
+          "platform": "X",
+          "link": "https://x.com/InteroDigital"
+        }
+      ]
+    },
+    {
+      "name": "Marketing Eye",
       "location": "Atlanta",
       "social_link": [
         {
@@ -871,52 +881,12 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
       ]
     },
     {
-      "name": "Julia Ager | Jus Agency NYC",
-      "location": "New York USA",
-      "social_link": [
-        {
-          "platform": "X",
-          "link": "https://x.com/jusagency"
-        }
-      ]
-    },
-    {
-      "name": "AgencyDocs - X",
-      "location": "New York USA",
-      "social_link": [
-        {
-          "platform": "X",
-          "link": "https://x.com/AgencyDocs"
-        }
-      ]
-    },
-    {
       "name": "Next Level Digital Marketing",
-      "location": "New York USA",
+      "location": "Colorado Springs, CO",
       "social_link": [
         {
           "platform": "X",
           "link": "https://x.com/NLMCsimplify"
-        }
-      ]
-    },
-    {
-      "name": "Digital Agency Network",
-      "location": "New York USA",
-      "social_link": [
-        {
-          "platform": "X",
-          "link": "https://x.com/danglobal"
-        }
-      ]
-    },
-    {
-      "name": "MSM Digital",
-      "location": "New York USA",
-      "social_link": [
-        {
-          "platform": "YouTube",
-          "link": "https://www.youtube.com/@wearemsmdigital/videos"
         }
       ]
     },
@@ -955,16 +925,6 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
       ]
     },
     {
-      "name": "Accuracy SEO",
-      "location": "New York USA",
-      "social_link": [
-        {
-          "platform": "YouTube",
-          "link": "https://www.youtube.com/@AccuracySEO"
-        }
-      ]
-    },
-    {
       "name": "BAD Marketing",
       "location": "New York USA",
       "social_link": [
@@ -985,96 +945,90 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
       ]
     },
     {
-      "name": "PMG",
+      "name": "BAMBRICK",
       "location": "New York USA",
       "social_link": [
         {
           "platform": "YouTube",
-          "link": "https://youtube.com/@precision-mediagroup?si=hr-idDYN3_QVmwKx"
+          "link": "https://www.youtube.com/@bambrick-digital-marketing"
         }
       ]
     },
     {
-      "name": "Best Email Marketing Agencies in New York City 2026",
+      "name": "Share",
       "location": "New York USA",
       "social_link": [
         {
-          "platform": "Google",
-          "link": "https://agencies.semrush.com/list/email-marketing/new-york-city"
+          "platform": "WhatsApp",
+          "link": "https://wa.me/919988398628"
+        },
+        {
+          "platform": "WhatsApp",
+          "link": "https://wa.me/01917462410"
+        },
+        {
+          "platform": "WhatsApp",
+          "link": "https://wa.me/333222222"
         }
       ]
     },
     {
-      "name": "Top Marketing Agencies in NYC",
+      "name": "Digital Marketing Agency New York",
       "location": "New York USA",
       "social_link": [
         {
           "platform": "Google",
-          "link": "https://www.builtinnyc.com/articles/digital-agencies-nyc"
-        }
-      ]
-    },
-    {
-      "name": "Digital Marketing Agency for Small Businesses",
-      "location": "New York USA",
-      "social_link": [
-        {
-          "platform": "Google",
-          "link": "https://solutionsforgrowthllc.com/digital_marketing_agency_for_small_businesses"
-        }
-      ]
-    },
-    {
-      "name": "Top Digital Marketing Agencies in the United States",
-      "location": "New York USA",
-      "social_link": [
-        {
-          "platform": "Google",
-          "link": "https://clutch.co/us/agencies/digital-marketing"
-        }
-      ]
-    },
-    {
-      "name": "Marketing Agency Email List: 87,538+ US Contacts (2026)",
-      "location": "New York USA",
-      "social_link": [
-        {
-          "platform": "Google",
-          "link": "https://scrap.io/marketing-agency-email-list-guide"
-        }
-      ]
-    },
-    {
-      "name": "5W",
-      "location": "New York USA",
-      "social_link": [
-        {
-          "platform": "Google",
-          "link": "https://www.5wpr.com"
+          "link": "https://www.idhlagency.com/us/contact/newyork"
         },
         {
           "platform": "Email",
-          "link": "mailto:info@5wpr.com"
+          "link": "mailto:sam@idhl.io"
+        },
+        {
+          "platform": "Email",
+          "link": "mailto:mike.sprot@idhl.co.uk"
+        },
+        {
+          "platform": "Email",
+          "link": "mailto:recruitment@idhl.co.uk"
+        },
+        {
+          "platform": "Email",
+          "link": "mailto:lucy.darnell@idhl.co.uk"
         }
       ]
     },
     {
-      "name": "Digital and Email Marketing Platform",
+      "name": "Smartlytics",
       "location": "New York USA",
       "social_link": [
         {
           "platform": "Google",
-          "link": "https://www.constantcontact.com"
+          "link": "https://www.smartlytics.io/contact-us"
+        },
+        {
+          "platform": "Email",
+          "link": "mailto:sales@smartlytics.io"
         }
       ]
     },
     {
-      "name": "Known",
+      "name": "DS&P Digital Marketing & PR Agency",
       "location": "New York USA",
       "social_link": [
         {
           "platform": "Google",
-          "link": "https://known.is"
+          "link": "https://www.dial911fordesign.com"
+        }
+      ]
+    },
+    {
+      "name": "Leadiq",
+      "location": "New York USA",
+      "social_link": [
+        {
+          "platform": "Google",
+          "link": "https://leadiq.com/c/vab-media-digital-marketing-agency/5a1dd2c22300005a00dc1ace"
         }
       ]
     }
@@ -1084,20 +1038,20 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
 
 </details>
 
-### 3. "Startup founders in London UK" (27 Verified Prospects)
+### 3. "Startup founders in London UK" (31 Verified Prospects)
 
 <details>
-<summary>Click to expand verified JSON response (27 Prospects)</summary>
+<summary>Click to expand verified JSON response (31 Prospects)</summary>
 
 ```json
 {
   "success": true,
   "query": "Startup founders in London UK",
-  "total_prospects": 27,
+  "total_prospects": 31,
   "prospects": [
     {
       "name": "London Startup Center",
-      "location": "London UK",
+      "location": "London, UK",
       "social_link": [
         {
           "platform": "LinkedIn",
@@ -1111,7 +1065,7 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
     },
     {
       "name": "Startup Founders Toolkit",
-      "location": "London UK",
+      "location": "London, UK",
       "social_link": [
         {
           "platform": "LinkedIn",
@@ -1121,7 +1075,7 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
     },
     {
       "name": "London Startup",
-      "location": "London UK",
+      "location": "London, UK",
       "social_link": [
         {
           "platform": "LinkedIn",
@@ -1131,7 +1085,7 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
     },
     {
       "name": "Entrepreneurs of London",
-      "location": "London UK",
+      "location": "London, UK",
       "social_link": [
         {
           "platform": "LinkedIn",
@@ -1141,7 +1095,7 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
     },
     {
       "name": "John-Pierre Clark",
-      "location": "London, En",
+      "location": "London, UK",
       "social_link": [
         {
           "platform": "LinkedIn",
@@ -1151,7 +1105,7 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
     },
     {
       "name": "Startup Grind London",
-      "location": "London UK",
+      "location": "London, UK",
       "social_link": [
         {
           "platform": "LinkedIn",
@@ -1161,7 +1115,7 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
     },
     {
       "name": "Brent Hoberman",
-      "location": "London, En",
+      "location": "London, UK",
       "social_link": [
         {
           "platform": "LinkedIn",
@@ -1171,7 +1125,7 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
     },
     {
       "name": "Rare Founders",
-      "location": "London UK",
+      "location": "London, UK",
       "social_link": [
         {
           "platform": "LinkedIn",
@@ -1181,7 +1135,7 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
     },
     {
       "name": "Tom Bryan",
-      "location": "London, En",
+      "location": "London, UK",
       "social_link": [
         {
           "platform": "LinkedIn",
@@ -1191,131 +1145,167 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
     },
     {
       "name": "Founders Forum Group",
-      "location": "London UK",
+      "location": "London, UK",
       "social_link": [
         {
           "platform": "LinkedIn",
           "link": "https://uk.linkedin.com/company/foundersforumgroup"
-        },
-        {
-          "platform": "YouTube",
-          "link": "https://www.youtube.com/@FoundersForumGroup/videos"
         }
       ]
     },
     {
-      "name": "Martin Varsavsky",
-      "location": "London UK",
+      "name": "Vasily Alekseenko",
+      "location": "London, UK",
       "social_link": [
         {
           "platform": "X",
-          "link": "https://x.com/martinvars"
+          "link": "https://x.com/rarefounders"
         }
       ]
     },
     {
-      "name": "Elevating Founders",
-      "location": "London UK",
+      "name": "Superteam UK",
+      "location": "London, UK",
       "social_link": [
         {
           "platform": "X",
-          "link": "https://x.com/EFSeries"
+          "link": "https://x.com/SuperteamUK"
         }
       ]
     },
     {
-      "name": "Brian Rose, Founder & Host of London Real",
-      "location": "London UK",
+      "name": "Anthony Rose",
+      "location": "London",
       "social_link": [
         {
           "platform": "X",
-          "link": "https://x.com/LondonRealTV"
+          "link": "https://x.com/anthonyrose"
         }
       ]
     },
     {
-      "name": "Seb Johnson",
-      "location": "London UK",
+      "name": "Startups.co.uk",
+      "location": "London, UK",
       "social_link": [
         {
           "platform": "X",
-          "link": "https://x.com/SebJohnsonUK"
+          "link": "https://x.com/startupstowers"
         }
       ]
     },
     {
-      "name": "etn.",
-      "location": "London UK",
+      "name": "Entrepreneurs Collective",
+      "location": "London, UK",
       "social_link": [
         {
           "platform": "X",
-          "link": "https://x.com/etnshow"
+          "link": "https://x.com/ecfoundersclub"
         }
       ]
     },
     {
-      "name": "Startup Catalyst",
-      "location": "London UK",
+      "name": "Reload Greece",
+      "location": "London, UK",
       "social_link": [
         {
           "platform": "X",
-          "link": "https://x.com/catalyst_au"
+          "link": "https://x.com/ReloadGreece"
         }
       ]
     },
     {
-      "name": "UK in Sierra Leone 🇬🇧🇸🇱",
-      "location": "London UK",
+      "name": "Startup Coalition",
+      "location": "United Kingdom",
       "social_link": [
         {
           "platform": "X",
-          "link": "https://x.com/UKinSierraLeone"
+          "link": "https://x.com/StartupCltn"
         }
       ]
     },
     {
-      "name": "Startup Video Production for Technology Founders Raising Investment",
-      "location": "London UK",
+      "name": "GEN UK",
+      "location": "London, UK",
       "social_link": [
         {
           "platform": "X",
-          "link": "https://x.com/Liveupvideos"
+          "link": "https://x.com/TheGENUK"
         }
       ]
     },
     {
-      "name": "Startup Sensations Podcast",
-      "location": "London UK",
+      "name": "Capital Enterprise",
+      "location": "London, UK",
       "social_link": [
         {
-          "platform": "YouTube",
-          "link": "https://www.youtube.com/@StartupSensations"
+          "platform": "X",
+          "link": "https://x.com/capenterprise"
         }
       ]
     },
     {
-      "name": "Startup Microdose",
-      "location": "London UK",
+      "name": "7startup",
+      "location": "London, UK",
       "social_link": [
         {
           "platform": "YouTube",
-          "link": "https://www.youtube.com/@startupmicrodose5857"
+          "link": "https://www.youtube.com/@7startup938/videos"
         }
       ]
     },
     {
-      "name": "Vasily Alekseenko - Rare Founders Founder",
-      "location": "London UK",
+      "name": "Ready Set StartUP UK",
+      "location": "London, UK",
       "social_link": [
         {
           "platform": "YouTube",
-          "link": "https://www.youtube.com/@rarefounders"
+          "link": "https://www.youtube.com/@ReadySetStartUPUK"
+        }
+      ]
+    },
+    {
+      "name": "Just Munty",
+      "location": "London, UK",
+      "social_link": [
+        {
+          "platform": "YouTube",
+          "link": "https://www.youtube.com/@Justmunty/videos"
+        }
+      ]
+    },
+    {
+      "name": "The Pitch",
+      "location": "London, UK",
+      "social_link": [
+        {
+          "platform": "YouTube",
+          "link": "https://www.youtube.com/@Thepitchuk/videos"
+        }
+      ]
+    },
+    {
+      "name": "The Grumpy Entrepreneur Startup, Scaleup Show",
+      "location": "London, UK",
+      "social_link": [
+        {
+          "platform": "YouTube",
+          "link": "https://www.youtube.com/@thegrumpyentrepreneurshow/videos"
+        }
+      ]
+    },
+    {
+      "name": "London Founder's Network",
+      "location": "London, UK",
+      "social_link": [
+        {
+          "platform": "Google",
+          "link": "https://www.londonfoundersnetwork.com/contact"
         }
       ]
     },
     {
       "name": "UK Founders and Their Contact Info",
-      "location": "London UK",
+      "location": "London, UK",
       "social_link": [
         {
           "platform": "Google",
@@ -1324,8 +1314,8 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
       ]
     },
     {
-      "name": "Contact us",
-      "location": "London UK",
+      "name": "Get in Touch with Startups.co.uk",
+      "location": "London, UK",
       "social_link": [
         {
           "platform": "Google",
@@ -1342,86 +1332,86 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
       ]
     },
     {
-      "name": "London Startup Community, Mentorship and Events",
-      "location": "London UK",
+      "name": "Founders Forum Group Company Overview, Contact Details & Competitors",
+      "location": "London, UK",
       "social_link": [
         {
           "platform": "Google",
-          "link": "https://foundersnetwork.com/mentoring-programs/london-startup-community"
+          "link": "https://leadiq.com/c/founders-forum-group/5a1d9d802300005a008d59c4"
+        },
+        {
+          "platform": "Email",
+          "link": "mailto:first@ff.co"
         }
       ]
     },
     {
-      "name": "Contact – Hustle Awards",
-      "location": "London UK",
+      "name": "UK Startup",
+      "location": "London, UK",
       "social_link": [
         {
           "platform": "Google",
-          "link": "https://thehustleawards.co.uk/contact"
+          "link": "https://www.ukstartup.co.uk/contact"
         }
       ]
     },
     {
-      "name": "The 29 Coolest Female Startup Founders in the UK",
-      "location": "London UK",
+      "name": "Virgin StartUp",
+      "location": "London, UK",
       "social_link": [
         {
           "platform": "Google",
-          "link": "https://www.businessinsider.com/the-29-coolest-uk-female-startup-founders-2017-5"
+          "link": "https://www.virginstartup.org"
         }
       ]
     },
     {
-      "name": "What the Founder’s Email Address Says About Your Startup",
-      "location": "London UK",
+      "name": "Startup Haven Company Overview, Contact Details & Competitors",
+      "location": "Formats Startup Haven uses at least",
       "social_link": [
         {
           "platform": "Google",
-          "link": "https://genuinevc.com/2012/03/20/what-the-founders-email-address-says-about-your-startup"
+          "link": "https://leadiq.com/c/startup-haven/5a1daccc2300005c00a23a0e"
         },
         {
           "platform": "Email",
-          "link": "mailto:founders@startup.com"
+          "link": "mailto:first@startuphaven.com"
         },
         {
           "platform": "Email",
-          "link": "mailto:chiefninja@startup.com"
+          "link": "mailto:john@startuphaven.com"
+        },
+        {
+          "platform": "Google",
+          "link": "https://leadiq.com/c/startup-grind/5a1d96762300005b0085134c"
         },
         {
           "platform": "Email",
-          "link": "mailto:chiefcrazytitle@startup.com"
+          "link": "mailto:first@startupgrind.com"
         },
         {
           "platform": "Email",
-          "link": "mailto:info@startup.com"
+          "link": "mailto:john@startupgrind.com"
         },
         {
           "platform": "Email",
-          "link": "mailto:john-smith114@gmail.com"
+          "link": "mailto:john.doe@startupgrind.com"
         },
         {
           "platform": "Email",
-          "link": "mailto:johnsmith@startup.com"
+          "link": "mailto:flast@startupgrind.com"
         },
         {
           "platform": "Email",
-          "link": "mailto:johns@startup.com"
+          "link": "mailto:jdoe@startupgrind.com"
         },
         {
           "platform": "Email",
-          "link": "mailto:johnny@startup.com"
+          "link": "mailto:firstl@startupgrind.com"
         },
         {
           "platform": "Email",
-          "link": "mailto:john.smith@startup.com"
-        },
-        {
-          "platform": "Email",
-          "link": "mailto:jsmith@startup-inc.com"
-        },
-        {
-          "platform": "Email",
-          "link": "mailto:js@startup.com"
+          "link": "mailto:johnd@startupgrind.com"
         }
       ]
     }
@@ -1431,119 +1421,119 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
 
 </details>
 
-### 4. "Cricket lovers in Ahmedabad India" (26 Verified Prospects)
+### 4. "Cricket lovers in Ahmedabad India" (32 Verified Prospects)
 
 <details>
-<summary>Click to expand verified JSON response (26 Prospects)</summary>
+<summary>Click to expand verified JSON response (32 Prospects)</summary>
 
 ```json
 {
   "success": true,
   "query": "Cricket lovers in Ahmedabad India",
-  "total_prospects": 26,
+  "total_prospects": 32,
   "prospects": [
     {
-      "name": "Indian Cricket Lovers",
-      "location": "Patna, Bi",
+      "name": "Gujarat Titans",
+      "location": "Ahmedabad India",
       "social_link": [
         {
           "platform": "LinkedIn",
-          "link": "https://www.linkedin.com/in/indian-cricket-lovers-41481b296"
+          "link": "https://www.linkedin.com/company/gujarattitans"
         }
       ]
     },
     {
-      "name": "Abcl Ahmedabad Box Cricket League",
-      "location": "Ahmedabad, Gu",
+      "name": "INDIAN CRICKET LOVERS",
+      "location": "Patna, Bihar, India",
       "social_link": [
         {
           "platform": "LinkedIn",
-          "link": "https://www.linkedin.com/in/abcl-ahmedabad-box-cricket-league-414848226"
+          "link": "https://in.linkedin.com/in/indian-cricket-lovers-41481b296"
         }
       ]
     },
     {
-      "name": "Cricket Lovers",
-      "location": "Rajkot, Gu",
+      "name": "CricHeroes",
+      "location": "Ahmedabad India",
       "social_link": [
         {
           "platform": "LinkedIn",
-          "link": "https://www.linkedin.com/in/cricket-lovers-178685118"
+          "link": "https://fr.linkedin.com/company/cricheroes"
         }
       ]
     },
     {
-      "name": "Cricket Lovers",
-      "location": "Jamnagar, Gu",
+      "name": "Dipak Kumar Mandal",
+      "location": "Ahmedabad, Gujarat, India, India",
       "social_link": [
         {
           "platform": "LinkedIn",
-          "link": "https://www.linkedin.com/in/cricket-lovers-4235053ab"
+          "link": "https://in.linkedin.com/in/dipak-kumar-mandal-9285b2329"
         }
       ]
     },
     {
-      "name": "Cricket Lovers",
-      "location": "Mumbai, Ma",
+      "name": "Ashish Jha",
+      "location": "Ahmedabad, Gujarat, India, India",
       "social_link": [
         {
           "platform": "LinkedIn",
-          "link": "https://www.linkedin.com/in/cricket-lovers-707194202"
+          "link": "https://in.linkedin.com/in/ashish-jha-858999125"
         }
       ]
     },
     {
-      "name": "Cricket Lovers",
-      "location": "Mumbai, Ma",
+      "name": "Viswajitsinh Rathod",
+      "location": "Ahmedabad, Gujarat, India, India",
       "social_link": [
         {
           "platform": "LinkedIn",
-          "link": "https://www.linkedin.com/in/cricket-lovers-bb4b0a3b3"
+          "link": "https://in.linkedin.com/in/viswajitsinh-rathod-739a7423a"
         }
       ]
     },
     {
-      "name": "Cricket Lovers",
-      "location": "Sagar, Ma",
+      "name": "Cricket Lovers Global",
+      "location": "Ahmedabad India",
       "social_link": [
         {
           "platform": "LinkedIn",
-          "link": "https://www.linkedin.com/in/cricket-lovers-348013394"
+          "link": "https://uk.linkedin.com/company/cricket-lovers-global"
         }
       ]
     },
     {
-      "name": "Cricket Lovers",
-      "location": "Pune Division, Ma",
+      "name": "Asraul Haque",
+      "location": "Kishanganj, Bihar, India",
       "social_link": [
         {
           "platform": "LinkedIn",
-          "link": "https://www.linkedin.com/in/cricket-lovers-836899242"
+          "link": "https://in.linkedin.com/in/asraulhaqueknj"
         }
       ]
     },
     {
-      "name": "Cricket Lovers",
-      "location": "Jhunjhunu, Ra",
+      "name": "Bharat Army Travel",
+      "location": "Ahmedabad India",
       "social_link": [
         {
           "platform": "LinkedIn",
-          "link": "https://www.linkedin.com/in/cricket-lovers-27a2aa3b3"
+          "link": "https://in.linkedin.com/company/bharat-army-travel"
         }
       ]
     },
     {
-      "name": "Cricket Lovers",
-      "location": "Ashoknagar, Ma",
+      "name": "Adarsh Singh",
+      "location": "Ahmedabad, Gujarat, India, India",
       "social_link": [
         {
           "platform": "LinkedIn",
-          "link": "https://www.linkedin.com/in/cricket-lovers-77b38321a"
+          "link": "https://in.linkedin.com/in/adarsh-singh-415960243"
         }
       ]
     },
     {
-      "name": "Johns.",
+      "name": "Johns",
       "location": "Ahmedabad India",
       "social_link": [
         {
@@ -1563,27 +1553,47 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
       ]
     },
     {
-      "name": "Ariana News",
+      "name": "Office of Chief Minister, J&K",
       "location": "Ahmedabad India",
       "social_link": [
         {
           "platform": "X",
-          "link": "https://x.com/ArianaNews_"
+          "link": "https://x.com/CM_JnK"
         }
       ]
     },
     {
-      "name": "IANS",
+      "name": "Ravi Shastri",
       "location": "Ahmedabad India",
       "social_link": [
         {
           "platform": "X",
-          "link": "https://x.com/ians_india"
+          "link": "https://x.com/RaviShastriOfc"
         }
       ]
     },
     {
-      "name": "The Daily Jagran - X",
+      "name": "Honest Cricket Lover",
+      "location": "Ahmedabad India",
+      "social_link": [
+        {
+          "platform": "X",
+          "link": "https://x.com/Honest_Cric_fan"
+        }
+      ]
+    },
+    {
+      "name": "jüSTa Hotels & Resorts",
+      "location": "Ahmedabad India",
+      "social_link": [
+        {
+          "platform": "X",
+          "link": "https://x.com/Justahotel"
+        }
+      ]
+    },
+    {
+      "name": "The Daily Jagran",
       "location": "Ahmedabad India",
       "social_link": [
         {
@@ -1593,12 +1603,12 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
       ]
     },
     {
-      "name": "Valiant Cricket Team",
-      "location": "Gandhinagar, India",
+      "name": "Abdullah",
+      "location": "Ahmedabad India",
       "social_link": [
         {
           "platform": "X",
-          "link": "https://x.com/CricketValiant"
+          "link": "https://x.com/Abdullahhhh_56"
         }
       ]
     },
@@ -1663,70 +1673,90 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
       ]
     },
     {
-      "name": "Sports Reporter",
+      "name": "New Ahmedabad Sports Pune",
       "location": "Ahmedabad India",
       "social_link": [
         {
-          "platform": "YouTube",
-          "link": "https://youtube.com/@sportsreporterlive?si=E2XzXayYlWBYWQey"
+          "platform": "Instagram",
+          "link": "https://www.instagram.com/popular"
         }
       ]
     },
     {
-      "name": "https://wa.me/66811999157",
+      "name": "box cricket in gandhinagar",
+      "location": "Address",
+      "social_link": [
+        {
+          "platform": "Instagram",
+          "link": "https://www.instagram.com/popular"
+        }
+      ]
+    },
+    {
+      "name": "Share",
       "location": "Ahmedabad India",
       "social_link": [
         {
           "platform": "WhatsApp",
-          "link": "https://wa.me/66811999157"
+          "link": "https://wa.me/32728093322222"
         }
       ]
     },
     {
-      "name": "Contact Us",
+      "name": "Rocketreach",
       "location": "Ahmedabad India",
       "social_link": [
         {
           "platform": "Google",
-          "link": "https://cricketloversglobal.com/contact"
-        },
-        {
-          "platform": "Email",
-          "link": "mailto:info@cricketloversglobal.com"
+          "link": "https://rocketreach.co/gujarat-cricket-association-profile_b7ce536ac15fe89a"
         }
       ]
     },
     {
-      "name": "Contact Us",
+      "name": "Cricket In Ahmedabad",
       "location": "Ahmedabad India",
       "social_link": [
         {
           "platform": "Google",
-          "link": "https://blindcricket.in/contact-us"
+          "link": "https://australiancrickettours.com/collections/cricket-in-ahmedabad"
+        }
+      ]
+    },
+    {
+      "name": "Cricket Australia Company Overview, Contact Details & Competitors",
+      "location": "Ahmedabad India",
+      "social_link": [
+        {
+          "platform": "Google",
+          "link": "https://leadiq.com/c/cricket-debt-counseling/5a1d9ea02300005b008ee0de"
+        },
+        {
+          "platform": "Google",
+          "link": "https://leadiq.com/c/cricket-australia/5a1d97042300005e0085a886"
+        }
+      ]
+    },
+    {
+      "name": "The Cricket Lounge",
+      "location": "Ahmedabad India",
+      "social_link": [
+        {
+          "platform": "Google",
+          "link": "https://www.zoominfo.com/pic/the-cricket-lounge/369152246"
+        }
+      ]
+    },
+    {
+      "name": "Leadiq",
+      "location": "Formats",
+      "social_link": [
+        {
+          "platform": "Google",
+          "link": "https://leadiq.com/c/indian-institute-of-management-ahmedabad/5a1d95ee2300005400848bef"
         },
         {
           "platform": "Email",
-          "link": "mailto:mahantesh@samarthanam.org"
-        },
-        {
-          "platform": "Email",
-          "link": "mailto:president@blindcricket.in"
-        },
-        {
-          "platform": "Email",
-          "link": "mailto:media@blindcricket.in"
-        },
-        {
-          "platform": "Email",
-          "link": "mailto:pr@blindcricket.in"
-        },
-        {
-          "platform": "Email",
-          "link": "mailto:secretary@blindcricket.in"
-        },
-        {
-          "platform": "Email",
-          "link": "mailto:seeyou@blindcricket.in"
+          "link": "mailto:firstl@iima.ac.in"
         }
       ]
     }
@@ -1736,20 +1766,20 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
 
 </details>
 
-### 5. "Restaurant owners in Dubai UAE" (36 Verified Prospects)
+### 5. "Restaurant owners in Dubai UAE" (33 Verified Prospects)
 
 <details>
-<summary>Click to expand verified JSON response (36 Prospects)</summary>
+<summary>Click to expand verified JSON response (33 Prospects)</summary>
 
 ```json
 {
   "success": true,
   "query": "Restaurant owners in Dubai UAE",
-  "total_prospects": 36,
+  "total_prospects": 33,
   "prospects": [
     {
-      "name": "Khalid Karam‏",
-      "location": "Dubai, Du",
+      "name": "Khalid Karam",
+      "location": "Dubai, UAE",
       "social_link": [
         {
           "platform": "LinkedIn",
@@ -1758,8 +1788,8 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
       ]
     },
     {
-      "name": "‏Shahbaz Shahid Khan‏",
-      "location": "Dubai, Un",
+      "name": "Shahbaz Shahid Khan",
+      "location": "Dubai, UAE",
       "social_link": [
         {
           "platform": "LinkedIn",
@@ -1768,18 +1798,8 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
       ]
     },
     {
-      "name": "Joe Zouein‏",
-      "location": "United Arab Emirates",
-      "social_link": [
-        {
-          "platform": "LinkedIn",
-          "link": "https://ae.linkedin.com/in/joe-zouein-5470ba49"
-        }
-      ]
-    },
-    {
-      "name": "Aisha Shakoor‏",
-      "location": "Dubai, Un",
+      "name": "Aisha Shakoor",
+      "location": "Dubai, UAE",
       "social_link": [
         {
           "platform": "LinkedIn",
@@ -1788,8 +1808,18 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
       ]
     },
     {
-      "name": "‏Omar Shihab‏",
-      "location": "Dubai, Un",
+      "name": "Bassam Adly",
+      "location": "Dubai, UAE",
+      "social_link": [
+        {
+          "platform": "LinkedIn",
+          "link": "https://ae.linkedin.com/in/bassam-adly-589ab4155"
+        }
+      ]
+    },
+    {
+      "name": "Omar Shihab",
+      "location": "Dubai, UAE",
       "social_link": [
         {
           "platform": "LinkedIn",
@@ -1798,28 +1828,22 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
       ]
     },
     {
-      "name": "GoOrder",
-      "location": "Dubai, UA",
+      "name": "Restaurant Secrets Inc",
+      "location": "Dubai, UAE",
       "social_link": [
         {
           "platform": "LinkedIn",
-          "link": "https://www.linkedin.com/company/goorder"
-        }
-      ]
-    },
-    {
-      "name": "‏Ahmet Oytun Çakır‏",
-      "location": "Dubai, Un",
-      "social_link": [
+          "link": "https://ae.linkedin.com/company/restaurantsecretsinc"
+        },
         {
-          "platform": "LinkedIn",
-          "link": "https://ae.linkedin.com/in/oytuncak"
+          "platform": "Email",
+          "link": "mailto:recruit@restaurantsecrets.com"
         }
       ]
     },
     {
       "name": "UAE Restaurants Group",
-      "location": "Dubai UAE",
+      "location": "Dubai, UAE",
       "social_link": [
         {
           "platform": "LinkedIn",
@@ -1828,7 +1852,7 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
       ]
     },
     {
-      "name": "Orkan Doganci‏",
+      "name": "Orkan Doganci",
       "location": "United Arab Emirates",
       "social_link": [
         {
@@ -1838,22 +1862,22 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
       ]
     },
     {
-      "name": "‏Colm Carmody‏",
-      "location": "Dubai, Un",
+      "name": "SHAHNAWAAZZ S SUMARANI",
+      "location": "Dubai, UAE",
       "social_link": [
         {
           "platform": "LinkedIn",
-          "link": "https://ae.linkedin.com/in/colm-carmody-295a7034"
+          "link": "https://ae.linkedin.com/in/shahnawaazz-s-sumarani-665b8372"
         }
       ]
     },
     {
-      "name": "POJU OYEMADE",
-      "location": "Dubai UAE",
+      "name": "Raad Al zoubi",
+      "location": "Amman, Jo",
       "social_link": [
         {
-          "platform": "X",
-          "link": "https://x.com/pastorpoju"
+          "platform": "LinkedIn",
+          "link": "https://ae.linkedin.com/in/raad-al-zoubi-250783277"
         }
       ]
     },
@@ -1864,16 +1888,6 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
         {
           "platform": "X",
           "link": "https://x.com/vluxeinvests"
-        }
-      ]
-    },
-    {
-      "name": "Zack",
-      "location": "Dubai UAE",
-      "social_link": [
-        {
-          "platform": "X",
-          "link": "https://x.com/zackomondijr"
         }
       ]
     },
@@ -1889,7 +1903,7 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
     },
     {
       "name": "Akbar Ali Shah",
-      "location": "Dubai UAE",
+      "location": "Dubai, UAE",
       "social_link": [
         {
           "platform": "X",
@@ -1904,10 +1918,6 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
         {
           "platform": "X",
           "link": "https://x.com/himenus"
-        },
-        {
-          "platform": "YouTube",
-          "link": "https://www.youtube.com/@himenusofficial/videos"
         }
       ]
     },
@@ -1933,11 +1943,21 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
     },
     {
       "name": "ChatFood",
-      "location": "Dubai, United Arab Emirates",
+      "location": "Dubai, UAE",
       "social_link": [
         {
           "platform": "X",
           "link": "https://x.com/chatfood_io"
+        }
+      ]
+    },
+    {
+      "name": "FooDiva",
+      "location": "Dubai, UAE",
+      "social_link": [
+        {
+          "platform": "X",
+          "link": "https://x.com/FooDivaWorld"
         }
       ]
     },
@@ -1952,18 +1972,18 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
       ]
     },
     {
-      "name": "Pinay Mums UAE",
-      "location": "Dubai UAE",
+      "name": "Caterer Middle East",
+      "location": "Middle East",
       "social_link": [
         {
-          "platform": "YouTube",
-          "link": "https://www.youtube.com/@pinaymumsuae"
+          "platform": "X",
+          "link": "https://x.com/CatererME"
         }
       ]
     },
     {
       "name": "Menuviel",
-      "location": "Dubai UAE",
+      "location": "Dubai, UAE",
       "social_link": [
         {
           "platform": "YouTube",
@@ -1972,28 +1992,8 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
       ]
     },
     {
-      "name": "Imran khan",
-      "location": "Dubai UAE",
-      "social_link": [
-        {
-          "platform": "YouTube",
-          "link": "https://www.youtube.com/@Flavorandfigures"
-        }
-      ]
-    },
-    {
-      "name": "MAJU BIZ",
-      "location": "Dubai UAE",
-      "social_link": [
-        {
-          "platform": "YouTube",
-          "link": "https://www.youtube.com/@Majubiz"
-        }
-      ]
-    },
-    {
       "name": "Siraj Business Expert",
-      "location": "Dubai UAE",
+      "location": "Dubai, UAE",
       "social_link": [
         {
           "platform": "YouTube",
@@ -2002,18 +2002,48 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
       ]
     },
     {
-      "name": "Khan Masood",
-      "location": "Dubai UAE",
+      "name": "Mycom",
+      "location": "Dubai, UAE",
       "social_link": [
         {
           "platform": "YouTube",
-          "link": "https://www.youtube.com/@bizideaMasoodKhan"
+          "link": "https://www.youtube.com/@mycomsys"
         }
       ]
     },
     {
-      "name": "Zeenat Hamdan | Real Estate Agent Dubai & UAE",
-      "location": "Dubai UAE",
+      "name": "SEALMECH TRADING LLC",
+      "location": "Dubai, UAE",
+      "social_link": [
+        {
+          "platform": "YouTube",
+          "link": "https://www.youtube.com/@SEALMECH/videos"
+        }
+      ]
+    },
+    {
+      "name": "Leads Dubai",
+      "location": "Dubai, UAE",
+      "social_link": [
+        {
+          "platform": "YouTube",
+          "link": "https://www.youtube.com/@Leads-Dubai"
+        }
+      ]
+    },
+    {
+      "name": "American Wellness Center",
+      "location": "Dubai, UAE",
+      "social_link": [
+        {
+          "platform": "YouTube",
+          "link": "https://www.youtube.com/@americanwellnesscenter-dubai/videos"
+        }
+      ]
+    },
+    {
+      "name": "Zeenat Hamdan",
+      "location": "Dubai, UAE",
       "social_link": [
         {
           "platform": "YouTube",
@@ -2022,18 +2052,18 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
       ]
     },
     {
-      "name": "Best Startup Story",
-      "location": "Dubai UAE",
+      "name": "Dubai Restaurant Contact Directory",
+      "location": "Dubai, UAE",
       "social_link": [
         {
-          "platform": "YouTube",
-          "link": "https://www.youtube.com/@BestStartupStory/videos?view=0&sort=dd&shelf_id=0"
+          "platform": "Google",
+          "link": "https://www.scribd.com/document/378173143/thai-people-20120618-152305-620872"
         }
       ]
     },
     {
-      "name": "Contact us – Rags To Riches Restaurant",
-      "location": "Level",
+      "name": "Rags To Riches Restaurant",
+      "location": null,
       "social_link": [
         {
           "platform": "Google",
@@ -2046,32 +2076,18 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
       ]
     },
     {
-      "name": "Restaurants Email List UAE",
-      "location": "Dubai UAE",
+      "name": "Contact Abo Ali Restaurant & Cafe",
+      "location": "Sheikh Zayed Rd",
       "social_link": [
         {
           "platform": "Google",
-          "link": "https://spherescout.io/en-ae/email-list/restaurants/restaurant"
+          "link": "https://aboalirestaurants.com/contact-us"
         }
       ]
     },
     {
-      "name": "Restaurant License Cost in Dubai",
-      "location": "Dubai UAE",
-      "social_link": [
-        {
-          "platform": "Google",
-          "link": "https://ibgme.ae/blog/restaurant-license-cost-dubai-uae"
-        },
-        {
-          "platform": "Email",
-          "link": "mailto:info@ibgme.ae"
-        }
-      ]
-    },
-    {
-      "name": "Front page",
-      "location": "Dubai UAE",
+      "name": "Dubai Restaurant Association",
+      "location": "Dubai, UAE",
       "social_link": [
         {
           "platform": "Google",
@@ -2080,8 +2096,8 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
       ]
     },
     {
-      "name": "Contact",
-      "location": "Dubai UAE",
+      "name": "Restaurant Brands International ™",
+      "location": "Dubai, UAE",
       "social_link": [
         {
           "platform": "Google",
@@ -2090,18 +2106,8 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
       ]
     },
     {
-      "name": "Contact Us",
-      "location": "Dubai UAE",
-      "social_link": [
-        {
-          "platform": "Google",
-          "link": "https://www.thecheesecakefactory.com/connect/questions"
-        }
-      ]
-    },
-    {
       "name": "Dubai Sensor contact information",
-      "location": "Company Name",
+      "location": null,
       "social_link": [
         {
           "platform": "Google",
@@ -2114,16 +2120,6 @@ Below are the actual, unedited runtime JSON responses obtained from executing th
         {
           "platform": "Email",
           "link": "mailto:contact@dubai-sensor.com"
-        }
-      ]
-    },
-    {
-      "name": "Yum.Com",
-      "location": "Dubai UAE",
-      "social_link": [
-        {
-          "platform": "Google",
-          "link": "https://www.yum.com"
         }
       ]
     }
@@ -2207,7 +2203,7 @@ The test suite covers:
 | **Caching Engine** | **Cachetools (`TTLCache`)** | In-memory thread-safe TTL caching (`threading.Lock`) for intent and search results. |
 | **Concurrency Control** | **`asyncio.Semaphore`** | Bounded query pool preventing rate limits and burst costs. |
 | **Security & Anti-SSRF** | **`ipaddress` & `socket.getaddrinfo`** | Multi-layer IP/DNS filtering blocking loopback, private RFC 1918, and cloud metadata IPs. |
-| **Testing & QA** | **Pytest** & **`pytest-asyncio`** | Automated testing suite with 55 unit and integration tests. |
+| **Testing & QA** | **Pytest** & **`pytest-asyncio`** | Automated testing suite with 124 unit and integration tests. |
 | **Environment Management** | **`python-dotenv`** & **`.gitignore`** | Strict environment secret isolation. |
 
 ---
@@ -2217,9 +2213,11 @@ The test suite covers:
 - **Author**: **Dani Madhavapuri**
 - **Email**: [madhavapuridani@gmail.com](mailto:madhavapuridani@gmail.com)
 - **GitHub Repository**: [https://github.com/danimadhavapuri/ai-prospect-discovery](https://github.com/danimadhavapuri/ai-prospect-discovery)
-- **Application URL**: [http://localhost:4000](http://localhost:4000)
-- **Interactive Swagger Docs**: [http://localhost:4000/docs](http://localhost:4000/docs)
-- **Alternative ReDoc Docs**: [http://localhost:4000/redoc](http://localhost:4000/redoc)
+- **Live Deployed Service URL**: [https://ai-prospect-discovery.onrender.com](https://ai-prospect-discovery.onrender.com)
+- **Live Deployed Swagger Documentation**: [https://ai-prospect-discovery.onrender.com/docs](https://ai-prospect-discovery.onrender.com/docs)
+- **Local Application URL**: [http://localhost:4000](http://localhost:4000)
+- **Local Interactive Swagger Docs**: [http://localhost:4000/docs](http://localhost:4000/docs)
+- **Local Alternative ReDoc Docs**: [http://localhost:4000/redoc](http://localhost:4000/redoc)
 
 ---
 

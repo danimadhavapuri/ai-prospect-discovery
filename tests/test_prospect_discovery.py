@@ -28,6 +28,11 @@ from app.services.deduplication_service import deduplication_service
 from app.services.prospect_service import prospect_service
 from app.services.relevance_service import relevance_service
 from app.services.search_service import search_service
+from app.utils.normalizers import (
+    clean_entity_name,
+    normalize_location,
+    strip_invisible_unicode,
+)
 from app.utils.validators import (
     clean_url,
     identify_platform,
@@ -429,3 +434,215 @@ class TestProspectDiscoveryAPI:
             assert data["success"] is True
             assert data["total_prospects"] == 0
             assert data["prospects"] == []
+
+
+# =====================================================================
+# 6. Refined Name Cleaning, Location Normalization & Relevance Tests
+# =====================================================================
+
+
+class TestRefinedEntityNameCleaning:
+    """Tests for entity name extraction, boilerplate rejection, and platform suffix stripping."""
+
+    @pytest.mark.parametrize(
+        "boilerplate",
+        [
+            "Contact",
+            "Contact Us",
+            "Contact us",
+            "Front page",
+            "Home",
+            "About",
+            "About Us",
+            "Privacy Policy",
+            "Terms",
+            "Terms and Conditions",
+            "https://wa.me/971501234567",
+            "http://example.com/page",
+            "wa.me/123456789",
+        ],
+    )
+    def test_reject_standalone_boilerplate_and_urls(self, boilerplate: str) -> None:
+        """Verify standalone boilerplate navigation titles and raw URLs are rejected as names."""
+        assert clean_entity_name(boilerplate) is None
+
+    @pytest.mark.parametrize(
+        "raw_title,expected_entity",
+        [
+            ("Contact us – Rags To Riches Restaurant", "Rags To Riches Restaurant"),
+            ("Contact Us | Rags To Riches Restaurant", "Rags To Riches Restaurant"),
+            ("About Us - Acme Corp", "Acme Corp"),
+            ("Welcome to Rags To Riches Restaurant", "Rags To Riches Restaurant"),
+            ("Acme Digital Marketing - Home", "Acme Digital Marketing"),
+            ("Sarah Connor - X", "Sarah Connor"),
+            ("Alex Vance | LinkedIn", "Alex Vance"),
+            ("Chef Mario - YouTube", "Chef Mario"),
+            ("Gourmet Kitchen | Instagram", "Gourmet Kitchen"),
+            ("Tech Founders Club - Facebook", "Tech Founders Club"),
+            ("Startup Lead - Threads", "Startup Lead"),
+            ("Ravens Contact Us", "Ravens"),
+            ("\u200eJohn Doe\u200f", "John Doe"),
+            ("\u202aSarah Connor\u202c | LinkedIn", "Sarah Connor"),
+        ],
+    )
+    def test_clean_compound_titles_and_strip_suffixes(
+        self, raw_title: str, expected_entity: str
+    ) -> None:
+        """Verify compound contact titles extract organization name and strip platform suffixes."""
+        cleaned = clean_entity_name(raw_title)
+        assert cleaned == expected_entity
+
+
+class TestRefinedLocationNormalization:
+    """Tests for truncated 2-letter snippet artifacts and non-geographic string rejection."""
+
+    @pytest.mark.parametrize(
+        "raw_loc,expected_norm",
+        [
+            ("Washington, Di", "Washington, DC"),
+            ("Washington Di", "Washington, DC"),
+            ("the Washington", "Washington, DC"),
+            ("New York, Ne", "New York, NY"),
+            ("New York Ne", "New York, NY"),
+            ("Dubai, Du", "Dubai, UAE"),
+            ("Dubai, Un", "Dubai, UAE"),
+            ("Ahmedabad, Gu", "Ahmedabad, Gujarat, India"),
+            ("London, En", "London, UK"),
+            ("San Francisco, Ca", "San Francisco, CA"),
+            ("New York, NY\nExperience", "New York, NY"),
+            ("New York, NY Experience United States", "New York, NY"),
+        ],
+    )
+    def test_normalize_truncated_locations(
+        self, raw_loc: str, expected_norm: str
+    ) -> None:
+        """Verify truncated 2-letter location snippet artifacts are normalized correctly."""
+        normalized = normalize_location(raw_loc)
+        assert normalized == expected_norm
+
+    @pytest.mark.parametrize(
+        "non_geo",
+        [
+            "Level",
+            "Company Name",
+            "Experience",
+            "Education",
+            "Connections",
+            "United States Experience",
+            "Skills",
+        ],
+    )
+    def test_reject_non_geographic_strings(self, non_geo: str) -> None:
+        """Verify non-geographic CV badges and headers are discarded."""
+        assert normalize_location(non_geo) is None
+
+
+class TestRefinedRelevanceAndNoiseFiltering:
+    """Tests for listicle, article, off-topic, and off-location rejection."""
+
+    @pytest.mark.parametrize(
+        "listicle_title",
+        [
+            "Best Email Marketing Agencies in NYC",
+            "Top Marketing Agencies in New York",
+            "Marketing Agency Email List USA",
+            "The 29 Coolest Female Startup Founders in London",
+            "What the Founder's Email Address Says About Them",
+            "Restaurant License Cost in Dubai",
+            "Restaurants Email List UAE",
+            "How to Start a Restaurant in Dubai Step by Step",
+            "10 Best Digital Marketing Agencies",
+        ],
+    )
+    def test_reject_listicles_and_directories(self, listicle_title: str) -> None:
+        """Verify listicles, guides, directories, and blog posts are rejected as prospects."""
+        prospect = Prospect(
+            name=listicle_title,
+            location="New York, NY",
+            social_link=[SocialLink(platform="LinkedIn", link="https://www.linkedin.com/in/test")],
+        )
+        intent = QueryIntent(
+            raw_query="Digital marketing agency owners in New York USA",
+            interest=["Digital marketing"],
+            audience=["Agency owners"],
+            location=LocationIntent(city="New York", country="USA"),
+            suggested_queries=[],
+        )
+        assert relevance_service._is_valid_prospect(prospect, intent) is False
+
+    def test_reject_off_topic_american_football_band(self) -> None:
+        """Verify music band 'American Football' is rejected for sports query."""
+        prospect = Prospect(
+            name="American Football",
+            location="Washington, DC",
+            social_link=[SocialLink(platform="X", link="https://x.com/americanfootball")],
+        )
+        intent = QueryIntent(
+            raw_query="Football lovers in Washington DC in USA",
+            interest=["Football"],
+            audience=["Sports fans"],
+            location=LocationIntent(city="Washington", state="DC", country="USA"),
+            suggested_queries=[],
+        )
+        assert relevance_service._is_valid_prospect(prospect, intent) is False
+
+    def test_reject_off_topic_real_estate_for_restaurants(self) -> None:
+        """Verify real estate agency is rejected for restaurant owners query."""
+        prospect = Prospect(
+            name="Dubai Luxury Real Estate Properties",
+            location="Dubai, UAE",
+            social_link=[SocialLink(platform="WhatsApp", link="https://wa.me/971501234567")],
+        )
+        intent = QueryIntent(
+            raw_query="Restaurant owners in Dubai UAE",
+            interest=["Restaurant"],
+            audience=["Restaurant owners"],
+            location=LocationIntent(city="Dubai", country="UAE"),
+            suggested_queries=[],
+        )
+        assert relevance_service._is_valid_prospect(prospect, intent) is False
+
+    def test_reject_off_location_conflict(self) -> None:
+        """Verify prospect in Sydney, Australia is rejected when query targets Ahmedabad, India."""
+        prospect = Prospect(
+            name="Cricket Club Sydney",
+            location="Sydney, Australia",
+            social_link=[SocialLink(platform="Facebook", link="https://facebook.com/cricketsydney")],
+        )
+        intent = QueryIntent(
+            raw_query="Cricket lovers in Ahmedabad India",
+            interest=["Cricket"],
+            audience=["Cricket lovers"],
+            location=LocationIntent(city="Ahmedabad", country="India"),
+            suggested_queries=[],
+        )
+        assert relevance_service._is_valid_prospect(prospect, intent) is False
+
+
+class TestRefinedPlaceholderEmailFiltering:
+    """Tests for expanded dummy and placeholder email rejection."""
+
+    @pytest.mark.parametrize(
+        "placeholder_email",
+        [
+            "contact@startup.com",
+            "info@startup-inc.com",
+            "test@test.com",
+            "user@sample.com",
+            "john.smith@mycompany.io",
+            "johnsmith@randomdomain.org",
+            "jane.doe@techcorp.co",
+            "janedoe@business.com",
+            "placeholder@startup.io",
+            "sample@agency.com",
+        ],
+    )
+    def test_reject_placeholder_emails(self, placeholder_email: str) -> None:
+        """Verify expanded placeholder domains and usernames return None."""
+        assert validate_email(placeholder_email) is None
+
+    def test_allow_genuine_emails(self) -> None:
+        """Verify genuine verified emails are properly converted to mailto: format."""
+        assert validate_email("alex.vance@neuralfrontier.io") == "mailto:alex.vance@neuralfrontier.io"
+        assert validate_email("sarah.connor@cyberdyne.org") == "mailto:sarah.connor@cyberdyne.org"
+

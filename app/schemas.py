@@ -112,8 +112,10 @@ class LocationIntent(BaseModel):
 
 
 class QueryIntent(BaseModel):
-    """Structured understanding of natural language search query."""
-
+    raw_query: str | None = Field(
+        default=None,
+        description="The original unparsed query string.",
+    )
     interest: list[str] = Field(
         default_factory=list,
         description="Target domains, technologies, skills, or industries.",

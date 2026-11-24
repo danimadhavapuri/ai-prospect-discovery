@@ -2,6 +2,7 @@
 
 Coordinates platform discovery adapters and extracts verified names, locations,
 cross-platform links, public RFC-compliant emails, and WhatsApp contacts.
+Applies entity name cleaning and location normalization.
 """
 
 import logging
@@ -10,6 +11,7 @@ from typing import Any
 
 from app.platforms import ALL_PLATFORMS
 from app.schemas import CandidateProfile, QueryIntent, SocialLink, TavilySearchResult
+from app.utils.normalizers import clean_entity_name, normalize_location
 from app.utils.validators import (
     clean_url,
     identify_platform,
@@ -28,22 +30,35 @@ class ProfileExtractor:
         self, results: list[TavilySearchResult], intent: QueryIntent
     ) -> list[CandidateProfile]:
         """Run all platform adapters over search results to discover candidate profiles."""
-        candidates: list[CandidateProfile] = []
+        raw_candidates: list[CandidateProfile] = []
 
         for platform in ALL_PLATFORMS:
             try:
                 extracted = platform.safe_extract_candidates(results, intent)
-                candidates.extend(extracted)
+                raw_candidates.extend(extracted)
             except Exception as e:
                 logger.error("Error in platform %s extraction: %s", platform.name, e)
 
-        # Enrich candidates with cross-platform links and email/whatsapp links found in content
-        enriched: list[CandidateProfile] = []
-        for cand in candidates:
-            self._enrich_candidate(cand)
-            enriched.append(cand)
+        # Clean names, normalize locations, and enrich candidates
+        cleaned_candidates: list[CandidateProfile] = []
+        query_loc_display = intent.location.display() if intent.location else None
 
-        return enriched
+        for cand in raw_candidates:
+            # 1. Clean entity name. If it's boilerplate ("Contact", "Home") or raw URL, drop it.
+            cleaned_name = clean_entity_name(cand.name)
+            if not cleaned_name:
+                logger.debug("Dropping candidate with unverified/boilerplate name: '%s'", cand.name)
+                continue
+            cand.name = cleaned_name
+
+            # 2. Normalize location and fix truncated artifacts
+            cand.location = normalize_location(cand.location, query_loc_display, cand.snippet)
+
+            # 3. Enrich candidate with cross-platform links, emails, and WhatsApp
+            self._enrich_candidate(cand)
+            cleaned_candidates.append(cand)
+
+        return cleaned_candidates
 
     def _enrich_candidate(self, cand: CandidateProfile) -> None:
         """Scan candidate snippet and content for cross-referenced social URLs, emails, and WhatsApp."""

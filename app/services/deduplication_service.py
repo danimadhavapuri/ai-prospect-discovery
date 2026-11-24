@@ -160,10 +160,12 @@ class DeduplicationService:
         def add_link(platform: Any, url: str) -> None:
             if not url or not platform:
                 return
-            key = (str(platform), url.strip().lower())
-            if key not in seen_links:
-                seen_links.add(key)
-                social_links.append(SocialLink(platform=platform, link=url.strip()))
+            clean_u = url.strip()
+            # Normalize key by stripping trailing slash and lowercasing
+            norm_key = (str(platform), clean_u.rstrip("/").lower())
+            if norm_key not in seen_links:
+                seen_links.add(norm_key)
+                social_links.append(SocialLink(platform=platform, link=clean_u))
 
         for cand in cluster:
             # Add primary platform URL

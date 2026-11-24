@@ -9,6 +9,7 @@ import urllib.parse
 
 from app.platforms.base import BasePlatform
 from app.schemas import CandidateProfile, QueryIntent, SocialPlatform, TavilySearchResult
+from app.utils.normalizers import clean_entity_name
 from app.utils.validators import clean_url, validate_email, validate_whatsapp
 
 
@@ -82,7 +83,4 @@ class WhatsAppPlatform(BasePlatform):
         cleaned = re.sub(r"\s*[•\-|]\s*WhatsApp.*$", "", raw_title, flags=re.IGNORECASE).strip()
         cleaned = re.sub(r"^(?:Chat on|Message|Connect with)\s+", "", cleaned, flags=re.IGNORECASE).strip()
 
-        if len(cleaned) < 2 or "whatsapp" in cleaned.lower():
-            return None
-
-        return cleaned
+        return clean_entity_name(cleaned)

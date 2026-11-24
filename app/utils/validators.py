@@ -86,6 +86,8 @@ DUMMY_EMAIL_DOMAINS = {
     "domain.com",
     "test.com",
     "sample.com",
+    "startup.com",
+    "startup-inc.com",
     "yoursite.com",
     "email.com",
     "company.com",
@@ -109,6 +111,17 @@ DUMMY_EMAIL_PREFIXES = {
     "careers",
     "press",
 }
+
+# Regex for common dummy/placeholder user patterns like john.smith@*, johnsmith@*, etc.
+PLACEHOLDER_USER_PATTERNS = [
+    r"^john[\._-]?smith(?:[0-9]+)?$",
+    r"^jane[\._-]?doe(?:[0-9]+)?$",
+    r"^your[\._-]?name(?:[0-9]+)?$",
+    r"^user(?:name)?(?:[0-9]+)?$",
+    r"^placeholder(?:[0-9]+)?$",
+    r"^sample(?:[0-9]+)?$",
+    r"^first(?:name)?[\._-]last(?:name)?$",
+]
 
 
 def is_ip_allowed(ip_str: str) -> tuple[bool, str | None]:
@@ -292,6 +305,11 @@ def validate_email(email: str) -> str | None:
 
     if user in DUMMY_EMAIL_PREFIXES or domain in DUMMY_EMAIL_DOMAINS:
         return None
+
+    # Check for placeholder usernames like john.smith@*, johnsmith@*, etc.
+    for pat in PLACEHOLDER_USER_PATTERNS:
+        if re.match(pat, user):
+            return None
 
     if len(domain.split(".")) < 2:
         return None

@@ -76,6 +76,9 @@ class QueryService:
         if not intent:
             intent = self._parse_with_rules(raw_query)
 
+        # Ensure raw query is preserved
+        intent.raw_query = raw_query.strip()
+
         # Ensure suggested queries are always generated and bounded
         if not intent.suggested_queries:
             intent.suggested_queries = self._generate_search_queries(intent)

@@ -9,6 +9,7 @@ import urllib.parse
 
 from app.platforms.base import BasePlatform
 from app.schemas import CandidateProfile, QueryIntent, SocialPlatform, TavilySearchResult
+from app.utils.normalizers import clean_entity_name
 from app.utils.validators import clean_url, is_search_engine_result_url, validate_email, validate_phone
 
 # Non-Google social domains handled by other specialized platform adapters
@@ -94,22 +95,18 @@ class GooglePlatform(BasePlatform):
         return candidates
 
     def _parse_name(self, raw_title: str, url: str) -> str | None:
-        if not raw_title:
-            try:
-                host = urllib.parse.urlsplit(url).hostname or ""
-                return host.replace("www.", "").split(".")[0].capitalize()
-            except Exception:
-                return None
+        if raw_title:
+            cleaned = clean_entity_name(raw_title)
+            if cleaned:
+                return cleaned
 
-        # Clean common web suffixes
-        cleaned = re.sub(r"\s*[•\-|:]\s*(?:Home|Official Site|Official Website|Welcome|About Us).*$", "", raw_title, flags=re.IGNORECASE).strip()
-        cleaned = re.sub(r"\s*\|\s*.*$", "", cleaned).strip()
-
-        parts = [p.strip() for p in cleaned.split(" - ") if p.strip()]
-        if parts:
-            candidate = parts[0]
-            if 2 <= len(candidate) <= 60 and not candidate.lower().startswith("http"):
-                return candidate
+        try:
+            host = urllib.parse.urlsplit(url).hostname or ""
+            domain_part = host.replace("www.", "").split(".")[0]
+            if 2 <= len(domain_part) <= 40 and not domain_part.isdigit():
+                return domain_part.capitalize()
+        except Exception:
+            pass
 
         return None
 
