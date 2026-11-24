@@ -351,3 +351,28 @@ The test suite covers:
 | **Testing & QA** | **Pytest** & **`pytest-asyncio`** | Automated testing suite with 55 unit and integration tests. |
 | **Environment Management** | **`python-dotenv`** & **`.gitignore`** | Strict environment secret isolation. |
 
+---
+
+## Author & Project Information
+
+- **Author**: **Dani Madhavapuri**
+- **Email**: [madhavapuridani@gmail.com](mailto:madhavapuridani@gmail.com)
+- **GitHub Repository**: [https://github.com/danimadhavapuri/ai-prospect-discovery](https://github.com/danimadhavapuri/ai-prospect-discovery)
+- **Application URL**: [http://localhost:4000](http://localhost:4000)
+- **Interactive Swagger Docs**: [http://localhost:4000/docs](http://localhost:4000/docs)
+- **Alternative ReDoc Docs**: [http://localhost:4000/redoc](http://localhost:4000/redoc)
+
+---
+
+## Important Notices & Core Guarantees
+
+> [!IMPORTANT]
+> **Zero Fabrication Policy**: This application strictly prohibits synthetic prospect generation. Every returned prospect name, handle, URL, email, and phone number is verified and derived exclusively from real-time public search index data retrieved during runtime. If no verified prospects match a query, the service guarantees returning an empty list (`"total_prospects": 0`, `"prospects": []`) rather than fabricated data.
+
+> [!NOTE]
+> **Public Data & Platform Compliance**: This service queries only publicly available, search-indexed web information. It strictly respects platform terms of service and does not scrape behind logins, bypass authentication, solve CAPTCHAs, or access private messages.
+
+> [!TIP]
+> **Production Deployment Recommendation**: When deploying to production environments, run Uvicorn behind a secure reverse proxy (e.g. NGINX, Caddy, or Cloudflare), manage `GEMINI_API_KEY` and `TAVILY_API_KEY` through your cloud provider's secret manager, and retain the built-in multi-layer SSRF protection in `app/utils/validators.py`.
+
+
